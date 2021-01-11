@@ -1,2 +1,4 @@
 # Echo
-News Aggregator
+A personal News Aggregator
+
+

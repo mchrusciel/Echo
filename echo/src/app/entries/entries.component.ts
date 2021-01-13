@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import {entries} from '../entries';
 
@@ -8,12 +8,10 @@ import {entries} from '../entries';
   templateUrl: './entries.component.html',
   styleUrls: ['./entries.component.css']
 })
-export class EntriesComponent implements OnInit {
+export class EntriesComponent{
     entries = entries;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  share(){
+      window.alert('The article has been shared')
   }
-
 }

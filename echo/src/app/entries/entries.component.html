@@ -3,12 +3,18 @@
 
 <div *ngFor="let entry of entries">
 
-
     <h3>
         
         {{entry.name}}
 
 
     </h3>
+
+
+    <p *ngIf="entry.description">
+    Description: {{ entry.description }}
+    </p>
+
 </div>
+
 

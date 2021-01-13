@@ -1,24 +1,29 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 import { AppComponent } from './app.component';
-import { StripHtmlTagsPipe } from './pipe/strip-html-tags.pipe';
-import { EntriesComponent } from './entries/entries.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { EntriesComponent } from './entries/entries.component';
+import { StripHtmlTagsPipe } from './pipe/strip-html-tags.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    StripHtmlTagsPipe,
-    EntriesComponent,
-    TopBarComponent
-  ],
+  
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+
+  declarations: [
+    AppComponent,
+    TopBarComponent,
+    EntriesComponent,
+    StripHtmlTagsPipe
+  ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

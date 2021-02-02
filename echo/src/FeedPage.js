@@ -7,30 +7,43 @@ import Button from "react-bootstrap/Button";
 import * as yup from "yup";
 import { getFeedListing } from "./requests";
 const querystring = require("querystring");
-console.log(333);
 
 
 function FeedPage({ feedsStore, location }) {
-
-  console.log(333);
-
 
   const [initialized, setInitialized] = useState(false);
   const [url, setUrl] = useState("");
   const [listings, setListings] = useState([]);
   const [data, setData] = useState({});
- 
-    
- 
+
+
+  const getListings = async url => {
+    try {
+      const response = await getFeedListing(url);
+      setListings(response.data.items);
+      setData(response.data.feed);
+    } catch (ex) {
+      console.log(ex);
+    }
+  };
+
+
   const openLink = url => {
     window.location.href = url;
   };
- 
-  setUrl("https://www.nasa.gov/rss/dyn/breaking_news.rss");
-  const response = getFeedListing("https://www.nasa.gov/rss/dyn/breaking_news.rss");
-  setListings(response.data.items);
-  setData(response.data.feed);
-     
+
+  
+
+
+
+  useEffect(() => {
+    if (!initialized) {
+      const url = "https%3A%2F%2Fwww.nasa.gov%2Frss%2Fdyn%2Fbreaking_news.rss";
+      setUrl(url);
+      getListings(url);
+      setInitialized(true);
+    }
+  });
 
 
   return (
@@ -46,7 +59,7 @@ function FeedPage({ feedsStore, location }) {
               <p>{l.description}</p>
               <p>{l.content}</p>
               <Button variant="primary" onClick={openLink.bind(this, l.link)}>
-                Open 
+                Open
               </Button>{" "}
             </Card.Body>
           </Card>
